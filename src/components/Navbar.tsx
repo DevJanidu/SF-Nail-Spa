@@ -6,11 +6,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { navLinks } from "@/lib/data";
+import { business, navLinks } from "@/lib/data";
 import ThemeToggle from "./ThemeToggle";
-
-const companyName = process.env.NEXT_PUBLIC_COMPANY_NAME ?? "SF Nail Spa";
-const companyLogo = process.env.NEXT_PUBLIC_COMPANY_LOGO ?? "";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,11 +55,11 @@ export default function Navbar() {
   return (
     <header className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
       <div className="container navbar-inner">
-        <Link href="/" className="brand" aria-label={`${companyName} home`}>
-          {companyLogo ? (
+        <Link href="/" className="brand" aria-label={`${business.name} home`}>
+          {business.logo ? (
             <Image
-              src={companyLogo}
-              alt={`${companyName} logo`}
+              src={business.logo}
+              alt={`${business.name} logo`}
               width={120}
               height={40}
               className="brand-logo"
@@ -71,7 +68,7 @@ export default function Navbar() {
           ) : (
             <>
               <span className="brand-mark" aria-hidden="true">✦</span>
-              <span className="brand-name">{companyName}</span>
+              <span className="brand-name">{business.name}</span>
             </>
           )}
         </Link>

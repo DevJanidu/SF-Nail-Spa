@@ -1,36 +1,59 @@
-// Single source of truth for SF Nail Spa content.
-// Business facts are confirmed (SRS §6.1). Prices are placeholders pending
-// client confirmation (SRS FR-4.2) — see PRICING_DISCLAIMER.
+// Single source of truth — all business identity fields are driven by .env vars
+// so the same codebase can be deployed for different salon clients.
+// Change values in .env (or the hosting platform's env config) — never hardcode here.
+
+const e = process.env;
+
+// Resolve address parts first so we can build derived strings cleanly.
+const _name     = e.NEXT_PUBLIC_COMPANY_NAME     ?? "SF Nail Spa";
+const _street   = e.NEXT_PUBLIC_ADDRESS_STREET   ?? "1324 Noriega Street";
+const _city     = e.NEXT_PUBLIC_ADDRESS_CITY     ?? "San Francisco";
+const _state    = e.NEXT_PUBLIC_ADDRESS_STATE    ?? "CA";
+const _zip      = e.NEXT_PUBLIC_ADDRESS_ZIP      ?? "94122";
 
 export const business = {
-  name: "SF Nail Spa",
-  slogan: "Luxury Nail Care with Organic Beauty & Exceptional Service.",
-  neighborhood: "Outer Sunset",
+  name:         _name,
+  logo:         e.NEXT_PUBLIC_COMPANY_LOGO        ?? "",
+  slogan:       e.NEXT_PUBLIC_COMPANY_SLOGAN      ?? "Luxury Nail Care with Organic Beauty & Exceptional Service.",
+  neighborhood: e.NEXT_PUBLIC_NEIGHBORHOOD        ?? "Outer Sunset",
   address: {
-    street: "1324 Noriega Street",
-    city: "San Francisco",
-    state: "CA",
-    zip: "94122",
-    full: "1324 Noriega Street, San Francisco, CA 94122",
+    street: _street,
+    city:   _city,
+    state:  _state,
+    zip:    _zip,
+    full:   `${_street}, ${_city}, ${_state} ${_zip}`,
   },
-  phoneDisplay: "(415) 564-5581",
-  phoneHref: "tel:+14155645581",
-  email: "hello@sfnailspa.com",
-  url: "https://www.sfnailspa.com",
-  mapsQuery: "SF+Nail+Spa,+1324+Noriega+Street,+San+Francisco,+CA+94122",
+  phoneDisplay: e.NEXT_PUBLIC_PHONE_DISPLAY ?? "(415) 564-5581",
+  phoneHref:    e.NEXT_PUBLIC_PHONE_HREF    ?? "tel:+14155645581",
+  email:        e.NEXT_PUBLIC_COMPANY_EMAIL ?? "hello@sfnailspa.com",
+  url:          e.NEXT_PUBLIC_COMPANY_URL   ?? "https://www.sfnailspa.com",
+  // URL-encoded maps query built from address — no separate env var needed.
+  mapsQuery: encodeURIComponent(
+    `${_name}, ${_street}, ${_city}, ${_state} ${_zip}`
+  ).replace(/%20/g, "+"),
+  social: {
+    instagram: e.NEXT_PUBLIC_SOCIAL_INSTAGRAM ?? "",
+    facebook:  e.NEXT_PUBLIC_SOCIAL_FACEBOOK  ?? "",
+    yelp:      e.NEXT_PUBLIC_SOCIAL_YELP      ?? "",
+  },
   categories: ["Nail Salon", "Beauty Salon", "Waxing Services", "Eyelash Services"],
-} as const;
+};
 
 export type DayHours = { day: string; hours: string; closed?: boolean };
 
+function day(label: string, envVal: string | undefined, fallback: string): DayHours {
+  const h = envVal ?? fallback;
+  return { day: label, hours: h, ...(h.toLowerCase() === "closed" ? { closed: true } : {}) };
+}
+
 export const hours: DayHours[] = [
-  { day: "Monday", hours: "Closed", closed: true },
-  { day: "Tuesday", hours: "10:00 AM – 7:00 PM" },
-  { day: "Wednesday", hours: "10:00 AM – 7:00 PM" },
-  { day: "Thursday", hours: "10:00 AM – 7:00 PM" },
-  { day: "Friday", hours: "10:00 AM – 7:00 PM" },
-  { day: "Saturday", hours: "10:00 AM – 7:00 PM" },
-  { day: "Sunday", hours: "10:00 AM – 6:00 PM" },
+  day("Monday",    e.NEXT_PUBLIC_HOURS_MON, "Closed"),
+  day("Tuesday",   e.NEXT_PUBLIC_HOURS_TUE, "10:00 AM – 7:00 PM"),
+  day("Wednesday", e.NEXT_PUBLIC_HOURS_WED, "10:00 AM – 7:00 PM"),
+  day("Thursday",  e.NEXT_PUBLIC_HOURS_THU, "10:00 AM – 7:00 PM"),
+  day("Friday",    e.NEXT_PUBLIC_HOURS_FRI, "10:00 AM – 7:00 PM"),
+  day("Saturday",  e.NEXT_PUBLIC_HOURS_SAT, "10:00 AM – 7:00 PM"),
+  day("Sunday",    e.NEXT_PUBLIC_HOURS_SUN, "10:00 AM – 6:00 PM"),
 ];
 
 export const navLinks = [
