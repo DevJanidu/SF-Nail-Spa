@@ -88,6 +88,14 @@
 
 * {
   box-sizing: border-box;
+  min-width: 0; /* prevents flex/grid children from forcing horizontal overflow */
+}
+
+img,
+video,
+canvas {
+  max-width: 100%;
+  height: auto; /* overridden by next/image fill's inline height:100% — safe */
 }
 
 html {
@@ -169,6 +177,14 @@ a:hover {
 @media (max-width: 768px) {
   .section {
     padding-block: var(--space-4);
+  }
+  .container {
+    padding-inline: var(--space-2);
+  }
+}
+@media (max-width: 400px) {
+  .container {
+    padding-inline: 1.25rem;
   }
 }
 
@@ -500,6 +516,12 @@ a:hover {
   color: var(--color-accent);
   font-size: 1.25rem;
 }
+.brand-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
 .nav-desktop {
   display: flex;
   align-items: center;
@@ -638,6 +660,14 @@ a:hover {
   gap: var(--space-2);
   margin-top: var(--space-3);
 }
+@media (max-width: 480px) {
+  .hero-cta {
+    flex-direction: column;
+  }
+  .hero-cta .btn {
+    width: 100%;
+  }
+}
 .hero-meta {
   display: flex;
   flex-wrap: wrap;
@@ -673,6 +703,9 @@ a:hover {
   box-shadow: var(--shadow-sm);
 }
 @media (max-width: 860px) {
+  .hero {
+    padding-block: var(--space-4) var(--space-3);
+  }
   .hero-grid {
     grid-template-columns: 1fr;
   }
@@ -685,8 +718,13 @@ a:hover {
 /* ---------- Gallery ---------- */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: var(--space-2);
+}
+@media (max-width: 540px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .gallery-tile {
   position: relative;
@@ -720,6 +758,12 @@ a:hover {
 .gallery-tile:hover .gallery-tile-caption,
 .gallery-tile:focus-visible .gallery-tile-caption {
   opacity: 1;
+}
+/* Touch devices have no hover — always show caption */
+@media (hover: none) {
+  .gallery-tile-caption {
+    opacity: 1;
+  }
 }
 .gallery-tile:focus-visible {
   outline: 2px solid var(--color-accent);
@@ -756,8 +800,8 @@ a:hover {
 }
 .lightbox-close {
   position: absolute;
-  top: -14px;
-  right: -14px;
+  top: 0.75rem;
+  right: 0.75rem;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -767,6 +811,7 @@ a:hover {
   font-size: 1.1rem;
   cursor: pointer;
   box-shadow: var(--shadow-md);
+  z-index: 2;
 }
 
 /* ---------- Footer ---------- */
@@ -876,9 +921,10 @@ a:hover {
 }
 .price-row {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: baseline;
-  gap: var(--space-2);
+  gap: 0.25rem var(--space-2);
   padding: 0.75rem 0;
   border-bottom: 1px solid var(--color-border);
 }
@@ -901,6 +947,7 @@ a:hover {
 .value-icon {
   width: 48px;
   height: 48px;
+  flex-shrink: 0; /* never squeezed in flex rows */
   border-radius: var(--radius-md);
   display: inline-flex;
   align-items: center;

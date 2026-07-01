@@ -18,6 +18,12 @@ const nextConfig: NextConfig = {
         hostname: "images.pexels.com",
         pathname: "/**",
       },
+      // Allow any HTTPS host for the NEXT_PUBLIC_COMPANY_LOGO env var.
+      {
+        protocol: "https",
+        hostname: "**",
+        pathname: "/**",
+      },
     ],
   },
 };

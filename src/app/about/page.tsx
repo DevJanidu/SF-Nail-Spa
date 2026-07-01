@@ -117,8 +117,8 @@ export default function AboutPage() {
             </SectionHeading>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "var(--space-3)" }}>
               {["Rigorously trained & continuously learning", "Attentive, personalized service every visit", "Wheelchair accessible with no steps", "A warm welcome for elderly & mobility-impaired guests"].map((pt) => (
-                <div key={pt} style={{ display: "flex", gap: "0.75rem", alignItems: "center", fontSize: "var(--text-sm)" }}>
-                  <span style={{ color: "var(--color-accent)", fontWeight: 700 }}>✦</span>
+                <div key={pt} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start", fontSize: "var(--text-sm)" }}>
+                  <span style={{ color: "var(--color-accent)", fontWeight: 700, flexShrink: 0, lineHeight: "1.6" }}>✦</span>
                   {pt}
                 </div>
               ))}

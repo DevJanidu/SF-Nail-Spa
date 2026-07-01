@@ -209,13 +209,8 @@ export default function HomePage() {
       {/* Organic products highlight */}
       <section className="section section--alt">
         <div
-          className="container"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "var(--space-5)",
-            alignItems: "center",
-          }}
+          className="container split-grid"
+          style={{ gap: "var(--space-5)" }}
         >
           <Reveal>
             <div
@@ -259,12 +254,12 @@ export default function HomePage() {
                     style={{
                       display: "flex",
                       gap: "0.75rem",
-                      alignItems: "center",
+                      alignItems: "flex-start",
                       fontSize: "var(--text-sm)",
                     }}
                   >
                     <span
-                      style={{ color: "var(--color-secondary)", fontWeight: 700 }}
+                      style={{ color: "var(--color-secondary)", fontWeight: 700, flexShrink: 0, lineHeight: "1.6" }}
                     >
                       ✓
                     </span>
