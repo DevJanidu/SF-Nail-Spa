@@ -2,12 +2,26 @@
 
 import { useState } from "react";
 import { serviceCategories } from "@/lib/data";
+import Select from "@/components/ui/Select";
+import DatePicker from "@/components/ui/DatePicker";
+import TimePicker from "@/components/ui/TimePicker";
 
 type Status = "idle" | "submitting" | "success" | "error";
+
+function todayISO() {
+  const d = new Date();
+  const offset = d.getTimezoneOffset();
+  return new Date(d.getTime() - offset * 60000).toISOString().slice(0, 10);
+}
+
+const serviceOptions = serviceCategories.map((c) => ({ value: c.title, label: c.title }));
 
 export default function BookingForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
+  const [service, setService] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -26,6 +40,9 @@ export default function BookingForm() {
       setStatus("success");
       setMessage(json.message);
       form.reset();
+      setService("");
+      setDate("");
+      setTime("");
     } catch (err) {
       setStatus("error");
       setMessage(
@@ -69,27 +86,26 @@ export default function BookingForm() {
         </div>
         <div className="field">
           <label htmlFor="service">Preferred service *</label>
-          <select id="service" name="service" required defaultValue="">
-            <option value="" disabled>
-              Select a service…
-            </option>
-            {serviceCategories.map((c) => (
-              <option key={c.slug} value={c.title}>
-                {c.title}
-              </option>
-            ))}
-          </select>
+          <Select
+            id="service"
+            name="service"
+            placeholder="Select a service…"
+            options={serviceOptions}
+            required
+            value={service}
+            onValueChange={setService}
+          />
         </div>
       </div>
 
       <div className="grid-auto" style={{ gap: "var(--space-3)" }}>
         <div className="field">
           <label htmlFor="date">Preferred date</label>
-          <input id="date" name="date" type="date" />
+          <DatePicker id="date" name="date" value={date} onChange={setDate} min={todayISO()} />
         </div>
         <div className="field">
           <label htmlFor="time">Preferred time</label>
-          <input id="time" name="time" type="time" />
+          <TimePicker id="time" name="time" value={time} onChange={setTime} />
         </div>
       </div>
 
