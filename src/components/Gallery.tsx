@@ -15,23 +15,80 @@ export default function Gallery({
   const [active, setActive] = useState<string>("all");
   const [lightbox, setLightbox] = useState<GalleryCategory | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
+  const originRect = useRef<DOMRect | null>(null);
 
   const filters = ["all", ...categories.map((c) => c.slug)];
   const shown =
     active === "all" ? categories : categories.filter((c) => c.slug === active);
 
+  const openLightbox = (cat: GalleryCategory, tile: HTMLElement) => {
+    originRect.current = tile.getBoundingClientRect();
+    setLightbox(cat);
+  };
+
+  const closeLightbox = () => {
+    const card = cardRef.current;
+    const from = originRect.current;
+    const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (motionOK && card && from) {
+      gsap.to(card, {
+        position: "fixed",
+        top: from.top,
+        left: from.left,
+        width: from.width,
+        height: from.height,
+        duration: 0.4,
+        ease: "power3.inOut",
+        onComplete: () => {
+          originRect.current = null;
+          setLightbox(null);
+        },
+      });
+    } else {
+      originRect.current = null;
+      setLightbox(null);
+    }
+  };
+
+  // Animate the lightbox card growing out from the exact tile that was
+  // clicked, instead of just fading in centered — the image visually
+  // travels from its tile position to the lightbox's final size/position.
   useEffect(() => {
     if (!lightbox || !cardRef.current) return;
+    const card = cardRef.current;
     const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (motionOK) {
+    const from = originRect.current;
+
+    if (motionOK && from) {
+      const to = card.getBoundingClientRect();
       gsap.fromTo(
-        cardRef.current,
-        { opacity: 0, scale: 0.92 },
-        { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }
+        card,
+        {
+          position: "fixed",
+          top: from.top,
+          left: from.left,
+          width: from.width,
+          height: from.height,
+          x: 0,
+          y: 0,
+        },
+        {
+          top: to.top,
+          left: to.left,
+          width: to.width,
+          height: to.height,
+          duration: 0.5,
+          ease: "power3.inOut",
+          clearProps: "position,top,left,width,height",
+        }
       );
+    } else if (motionOK) {
+      gsap.fromTo(card, { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" });
     }
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setLightbox(null);
+      if (e.key === "Escape") closeLightbox();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -83,7 +140,7 @@ export default function Gallery({
             key={cat.slug}
             type="button"
             className="gallery-tile"
-            onClick={() => setLightbox(cat)}
+            onClick={(e) => openLightbox(cat, e.currentTarget)}
             aria-label={`View ${cat.title} example`}
           >
             <span className="gallery-tile-art">
@@ -106,7 +163,7 @@ export default function Gallery({
           role="dialog"
           aria-modal="true"
           aria-label={`${lightbox.title} preview`}
-          onClick={() => setLightbox(null)}
+          onClick={closeLightbox}
         >
           <div
             ref={cardRef}
@@ -125,7 +182,7 @@ export default function Gallery({
               type="button"
               className="lightbox-close"
               aria-label="Close preview"
-              onClick={() => setLightbox(null)}
+              onClick={closeLightbox}
               style={{ zIndex: 1 }}
             >
               ✕

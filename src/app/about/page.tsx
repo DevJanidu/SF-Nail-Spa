@@ -10,7 +10,7 @@ import { about, business, photos } from "@/lib/data";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about SF Nail Spa — a luxury organic, non-toxic, cruelty-free nail salon in San Francisco's Outer Sunset. Our mission, vision, and the values behind our exceptional service.",
+    "Learn about Vain — a luxury organic, non-toxic, cruelty-free nail salon in San Francisco's Outer Sunset. Our mission, vision, and the values behind our exceptional service.",
   alternates: { canonical: "/about" },
 };
 
@@ -111,7 +111,7 @@ export default function AboutPage() {
         <div className="container split-grid" style={{ alignItems: "center" }}>
           <div>
             <SectionHeading eyebrow="Our Team" title="Skilled hands, genuine care">
-              Every technician at SF Nail Spa combines rigorous training with a real
+              Every technician at Vain combines rigorous training with a real
               passion for their craft — and an unhurried, detail-first approach that
               shows in every finish.
             </SectionHeading>

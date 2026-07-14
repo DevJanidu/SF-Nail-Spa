@@ -9,7 +9,7 @@ import { business } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Contact SF Nail Spa at 1324 Noriega Street, San Francisco, CA 94122. Call (415) 564-5581, view hours and directions, or send us a message. Wheelchair accessible, no steps.",
+    "Contact Vain at 1324 Noriega Street, San Francisco, CA 94122. Call (415) 564-5581, view hours and directions, or send us a message. Wheelchair accessible, no steps.",
   alternates: { canonical: "/contact" },
 };
 

@@ -7,7 +7,7 @@ import { business } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Book Appointment",
   description:
-    "Request an appointment at SF Nail Spa in San Francisco's Outer Sunset. Choose your service and preferred time, or call (415) 564-5581. Walk-ins always welcome.",
+    "Request an appointment at Vain in San Francisco's Outer Sunset. Choose your service and preferred time, or call (415) 564-5581. Walk-ins always welcome.",
   alternates: { canonical: "/booking" },
 };
 

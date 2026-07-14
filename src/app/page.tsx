@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import HomeHero from "@/components/HomeHero";
+import ChatAssistant from "@/components/ChatAssistant";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
 import Gallery from "@/components/Gallery";
@@ -344,6 +345,8 @@ export default function HomePage() {
       </section>
 
       <CtaBanner />
+
+      <ChatAssistant />
     </>
   );
 }

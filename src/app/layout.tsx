@@ -3,7 +3,7 @@ import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import StickyBook from "@/components/StickyBook";
+import ScrollTop from "@/components/ScrollTop";
 import { business, hours } from "@/lib/data";
 
 const poppins = Poppins({
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: `%s | ${business.name}`,
   },
   description:
-    "SF Nail Spa offers luxury, organic, non-toxic, and cruelty-free nail care in San Francisco's Outer Sunset — manicures, pedicures, gel nails, cat eye & chrome nail art, eyelash extensions, and waxing.",
+    "Vain offers luxury, organic, non-toxic, and cruelty-free nail care in San Francisco's Outer Sunset — manicures, pedicures, gel nails, cat eye & chrome nail art, eyelash extensions, and waxing.",
   keywords: [
     "Nail Salon San Francisco",
     "Best Nail Salon Outer Sunset",
@@ -112,11 +112,13 @@ export default function RootLayout({
         <a href="#main" className="skip-link">
           Skip to content
         </a>
-        <div id="polish-wipe" aria-hidden="true" />
+        <div id="polish-wipe" aria-hidden="true">
+          <span id="polish-wipe-brand">{business.name}</span>
+        </div>
         <Navbar />
         <main id="main">{children}</main>
         <Footer />
-        <StickyBook />
+        <ScrollTop />
       </body>
     </html>
   );

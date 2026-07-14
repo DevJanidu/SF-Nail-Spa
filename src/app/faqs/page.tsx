@@ -7,7 +7,7 @@ import { faqs } from "@/lib/data";
 export const metadata: Metadata = {
   title: "FAQs",
   description:
-    "Frequently asked questions about SF Nail Spa — walk-ins, appointments, hard gel policy, products we use, gel removal, nail repair, and accessibility for elderly clients.",
+    "Frequently asked questions about Vain — walk-ins, appointments, hard gel policy, products we use, gel removal, nail repair, and accessibility for elderly clients.",
   alternates: { canonical: "/faqs" },
 };
 

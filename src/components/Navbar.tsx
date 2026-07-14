@@ -13,15 +13,21 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const pathname = usePathname();
   const menuRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
 
-  // Navbar shrink/solidify after 60px scroll.
+  // Position-based visibility: the navbar hides as soon as the page is
+  // scrolled past the navbar's own height, and reappears once scrolled
+  // back above it. onEnter/onLeaveBack fire once at the threshold, so no
+  // per-frame work. The start value is a function so it re-measures on
+  // ScrollTrigger refresh (resize / layout changes).
   useEffect(() => {
     const st = ScrollTrigger.create({
-      start: "top -60",
-      onUpdate: (self) => setScrolled(self.scroll() > 60),
+      start: () => `${headerRef.current?.offsetHeight ?? 0}px top`,
+      onEnter: () => setHidden(true),
+      onLeaveBack: () => setHidden(false),
     });
     return () => st.kill();
   }, []);
@@ -53,7 +59,7 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
+    <header ref={headerRef} className={`navbar ${hidden ? "navbar--hidden" : ""}`}>
       <div className="container navbar-inner">
         <Link href="/" className="brand" aria-label={`${business.name} home`}>
           {business.logo ? (

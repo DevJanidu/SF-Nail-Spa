@@ -7,7 +7,7 @@ import { serviceCategories, PRICING_DISCLAIMER } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "SF Nail Spa pricing for manicures, pedicures, gel nails, nail art, eyelash extensions, and waxing in San Francisco's Outer Sunset. Starting prices; final pricing confirmed in-salon.",
+    "Vain pricing for manicures, pedicures, gel nails, nail art, eyelash extensions, and waxing in San Francisco's Outer Sunset. Starting prices; final pricing confirmed in-salon.",
   alternates: { canonical: "/pricing" },
 };
 

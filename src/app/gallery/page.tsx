@@ -7,7 +7,7 @@ import { galleryCategories } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Nail Art Gallery",
   description:
-    "Browse SF Nail Spa's nail art gallery — cat eye, chrome, French, gel, hand-painted nail art, eyelash extensions, and before & after transformations in San Francisco's Outer Sunset.",
+    "Browse Vain's nail art gallery — cat eye, chrome, French, gel, hand-painted nail art, eyelash extensions, and before & after transformations in San Francisco's Outer Sunset.",
   alternates: { canonical: "/gallery" },
 };
 

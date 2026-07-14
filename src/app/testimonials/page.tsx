@@ -8,7 +8,7 @@ import { testimonials } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Testimonials",
   description:
-    "Read 5-star reviews from SF Nail Spa clients in San Francisco's Outer Sunset — on our gel manicures, pedicures, cat eye & chrome nail art, lashes, and welcoming, accessible service.",
+    "Read 5-star reviews from Vain clients in San Francisco's Outer Sunset — on our gel manicures, pedicures, cat eye & chrome nail art, lashes, and welcoming, accessible service.",
   alternates: { canonical: "/testimonials" },
 };
 

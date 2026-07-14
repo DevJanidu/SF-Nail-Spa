@@ -21,7 +21,7 @@ const categoryPhotos: Record<string, string> = {
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Explore SF Nail Spa's services: manicures, pedicures, gel nails, nail art (cat eye, chrome, French), eyelash extensions, and waxing — organic and non-toxic, in San Francisco's Outer Sunset.",
+    "Explore Vain's services: manicures, pedicures, gel nails, nail art (cat eye, chrome, French), eyelash extensions, and waxing — organic and non-toxic, in San Francisco's Outer Sunset.",
   alternates: { canonical: "/services" },
 };
 
@@ -53,7 +53,7 @@ export default function ServicesPage() {
                   >
                     <Image
                       src={categoryPhotos[cat.slug]}
-                      alt={`${cat.title} service at SF Nail Spa, San Francisco`}
+                      alt={`${cat.title} service at Vain, San Francisco`}
                       fill
                       sizes="(max-width: 768px) 100vw, 1100px"
                       style={{ objectFit: "cover" }}
@@ -116,7 +116,7 @@ export default function ServicesPage() {
                     </div>
                   ))}
                 </Reveal>
-                <div style={{ marginTop: "var(--space-3)", display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                <div style={{ marginTop: "var(--space-4)", display: "flex", gap: "1rem", flexWrap: "wrap" }}>
                   <CTAButton href="/booking">Book {cat.title}</CTAButton>
                   <Link href={`/pricing#${cat.slug}`} className="btn btn-secondary">
                     See Pricing

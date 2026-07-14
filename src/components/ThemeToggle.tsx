@@ -32,6 +32,7 @@ export default function ThemeToggle() {
   const toggle = () => {
     const next = theme === "dark" ? "light" : "dark";
     const wipe = document.getElementById("polish-wipe");
+    const brand = document.getElementById("polish-wipe-brand");
     const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (!wipe || !motionOK) {
@@ -46,13 +47,20 @@ export default function ThemeToggle() {
         duration: 0.45,
         ease: "power2.inOut",
       })
+      .to(brand, { opacity: 1, duration: 0.2 }, "-=0.2")
       .add(() => apply(next))
-      .to(wipe, {
-        clipPath: "polygon(100% 0, 100% 0, 100% 100%, 100% 100%)",
-        duration: 0.45,
-        ease: "power2.inOut",
-      })
-      .set(wipe, { clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)" });
+      .to(brand, { opacity: 0, duration: 0.2 }, "+=0.05")
+      .to(
+        wipe,
+        {
+          clipPath: "polygon(100% 0, 100% 0, 100% 100%, 100% 100%)",
+          duration: 0.45,
+          ease: "power2.inOut",
+        },
+        "-=0.05",
+      )
+      .set(wipe, { clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)" })
+      .set(brand, { opacity: 0 });
   };
 
   return (

@@ -5,7 +5,7 @@
 const e = process.env;
 
 // Resolve address parts first so we can build derived strings cleanly.
-const _name     = e.NEXT_PUBLIC_COMPANY_NAME     ?? "SF Nail Spa";
+const _name     = e.NEXT_PUBLIC_COMPANY_NAME     ?? "Vain";
 const _street   = e.NEXT_PUBLIC_ADDRESS_STREET   ?? "1324 Noriega Street";
 const _city     = e.NEXT_PUBLIC_ADDRESS_CITY     ?? "San Francisco";
 const _state    = e.NEXT_PUBLIC_ADDRESS_STATE    ?? "CA";
@@ -268,7 +268,7 @@ export const faqs: Faq[] = [
 
 export const about = {
   intro:
-    "Welcome to SF Nail Spa, a calm retreat in San Francisco's Outer Sunset where coastal quiet meets hand-finished luxury. We believe beautiful nails shouldn't come at the cost of your health or the planet — so we pair organic, non-toxic, cruelty-free products with the kind of meticulous, unhurried care that turns a quick appointment into a genuine escape.",
+    "Welcome to Vain, a calm retreat in San Francisco's Outer Sunset where coastal quiet meets hand-finished luxury. We believe beautiful nails shouldn't come at the cost of your health or the planet — so we pair organic, non-toxic, cruelty-free products with the kind of meticulous, unhurried care that turns a quick appointment into a genuine escape.",
   mission:
     "To deliver luxury nail and beauty care that's as kind to your body and the environment as it is beautiful — using organic, non-toxic products and exceptional, personalized service in a welcoming, accessible space.",
   vision:
@@ -342,7 +342,7 @@ export const galleryCategories: GalleryCategory[] = [
     title: "French Nails",
     from: "#FFFFFF",
     to: "#E3DCD0",
-    img: "https://images.unsplash.com/photo-1516914943479-89db7d9ae7f2?auto=format&fit=crop&w=800&q=80",
+    img: "https://www.essie.com/-/media/project/loreal/brand-sites/essie/americas/us/articles/nail_art/how-to-do-french-tip-nails/essie-nail-polish-french-manicure-shiny-final-look-2-356x632.jpg?rev=83e7a34d36fe4a5fb0262bda696c61e3",
   },
   {
     slug: "eyelash-extensions",
@@ -368,26 +368,26 @@ export function galleryAlt(title: string) {
 // All from Unsplash (free license). Replace with client photography when ready.
 export const photos = {
   hero: "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1400&q=85",
-  heroAlt: "Close-up of a luxurious manicure at SF Nail Spa in San Francisco",
+  heroAlt: "Close-up of a luxurious manicure at Vain in San Francisco",
 
   salonInterior: "https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  salonInteriorAlt: "Interior of SF Nail Spa salon in San Francisco's Outer Sunset",
+  salonInteriorAlt: "Interior of Vain salon in San Francisco's Outer Sunset",
 
   aboutTeam: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80",
-  aboutTeamAlt: "Nail technician at work at SF Nail Spa, Outer Sunset San Francisco",
+  aboutTeamAlt: "Nail technician at work at Vain, Outer Sunset San Francisco",
 
   manicure: "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=80",
-  manicureAlt: "Gel manicure service at SF Nail Spa San Francisco",
+  manicureAlt: "Gel manicure service at Vain San Francisco",
 
   pedicure: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=900&q=80",
-  pedicureAlt: "Luxury pedicure service at SF Nail Spa San Francisco",
+  pedicureAlt: "Luxury pedicure service at Vain San Francisco",
 
   nailArt: "https://images.unsplash.com/photo-1610992015836-7c249d75782d?auto=format&fit=crop&w=900&q=80",
-  nailArtAlt: "Custom nail art design at SF Nail Spa, Outer Sunset San Francisco",
+  nailArtAlt: "Custom nail art design at Vain, Outer Sunset San Francisco",
 
   eyelash: "https://plus.unsplash.com/premium_photo-1661432806304-6d6cb7bfa4c1?auto=format&fit=crop&w=900&q=80",
-  eyelashAlt: "Eyelash extension service at SF Nail Spa San Francisco",
+  eyelashAlt: "Eyelash extension service at Vain San Francisco",
 
   organic: "https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=900&q=80",
-  organicAlt: "Organic nail care products used at SF Nail Spa",
+  organicAlt: "Organic nail care products used at Vain",
 };
